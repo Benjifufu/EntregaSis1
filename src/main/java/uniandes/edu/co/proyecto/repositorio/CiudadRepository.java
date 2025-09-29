@@ -28,7 +28,6 @@ public interface CiudadRepository extends JpaRepository<Ciudad, Long> {
     @Query(value = "UPDATE Ciudad SET departamento=:departamento, nombre=:nombre WHERE IDCIUDAD = :IDCIUDAD", nativeQuery = true)
     void updateCiudad(@Param("IDCIUDAD") Long IDCIUDAD, @Param("departamento") String departamento, @Param("nombre") String nombre);
 
-
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Ciudad WHERE IDCIUDAD = :IDCIUDAD", nativeQuery = true)
