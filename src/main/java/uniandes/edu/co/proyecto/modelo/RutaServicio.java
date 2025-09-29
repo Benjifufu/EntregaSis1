@@ -23,7 +23,7 @@ public class RutaServicio {
     private Servicio servicio;
 
     @OneToMany(mappedBy = "rutaServicio")
-    private List<Relation11PK> puntos;
+    private List<Relation11> puntos;
 
     public RutaServicio(){;}
 
@@ -42,12 +42,10 @@ public class RutaServicio {
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;
     }
-    public List<Relation11PK> getPuntos() {
+    public List<Relation11> getPuntos() {
         return puntos;
     }
-    public void setPuntos(List<Relation11PK> puntos) {
+    public void setPuntos(List<Relation11> puntos) {
         this.puntos = puntos;
     }
-  
-    
 }
