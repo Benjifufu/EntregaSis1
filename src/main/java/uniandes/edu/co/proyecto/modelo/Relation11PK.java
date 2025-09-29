@@ -11,12 +11,12 @@ import jakarta.persistence.ManyToOne;
 public class Relation11PK implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "idRuta", insertable = false, updatable = false)
+    @JoinColumn(name = "idRuta", referencedColumnName = "idRuta")
     private RutaServicio rutaServicio;
 
 
     @ManyToOne
-    @JoinColumn(name = "direccion", insertable = false, updatable = false)
+    @JoinColumn(name = "direccion", referencedColumnName = "direccion")
     private PuntoGeografico puntoGeografico;
 
     public Relation11PK() {
