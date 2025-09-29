@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.TarjetaCredito;
 public interface TarjetaCreditoRepository extends JpaRepository<TarjetaCredito, Integer> {
 
     @Query(value = "SELECT * FROM TarjetaCredito", nativeQuery = true)
-    Collection<TarjetaCredito> getTarjetasCreditoess();
+    Collection<TarjetaCredito> getTarjetasCredito();
 
     @Query(value = "SELECT * FROM TarjetaCredito WHERE NUMERO = :NUMERO", nativeQuery = true)
     TarjetaCredito getTarjetaCredito(@Param("NUMERO") Long NUMERO);

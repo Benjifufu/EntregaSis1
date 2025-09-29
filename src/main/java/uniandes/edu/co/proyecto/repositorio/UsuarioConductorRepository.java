@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.UsuarioConductor;
 public interface UsuarioConductorRepository extends JpaRepository<UsuarioConductor, Long> {
     
     @Query(value = "SELECT * FROM UsuarioConductor", nativeQuery = true)
-    Collection<UsuarioConductor> getUsuariosConductores();
+    Collection<UsuarioConductor> getUsuariosConductor();
 
     @Query(value = "SELECT * FROM UsuarioConductor WHERE IDUSUARIOCONDUCTOR = :IDUSUARIOCONDUCTOR", nativeQuery = true)
     UsuarioConductor getUsuarioConductor(@Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR);

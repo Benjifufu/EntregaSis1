@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.UsuarioCliente;
 public interface UsuarioClienteRepository extends JpaRepository<UsuarioCliente, Long> {
     
     @Query(value = "SELECT * FROM UsuarioCliente", nativeQuery = true)
-    Collection<UsuarioCliente> getUsuariosClientes();
+    Collection<UsuarioCliente> getUsuariosCliente();
 
     @Query(value = "SELECT * FROM UsuarioCliente WHERE IDUSUARIOCLIENTE = :IDUSUARIOCLIENTE", nativeQuery = true)
     UsuarioCliente getUsuarioCliente(@Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE);

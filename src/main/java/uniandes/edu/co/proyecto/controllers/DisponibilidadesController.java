@@ -1,5 +1,7 @@
 package uniandes.edu.co.proyecto.controllers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,5 +20,15 @@ public class DisponibilidadesController {
 
     @Autowired
     private DisponibilidadRepository disponibilidadRepository;
+
+    @GetMapping("disponibilidades")
+    public ResponseEntity<Collection<Disponibilidad>> disponibilidades(){
+        try {
+            Collection<Disponibilidad> disponibilidades = disponibilidadRepository.getDisponibilidades();
+            return ResponseEntity.ok(disponibilidades);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     
 }
