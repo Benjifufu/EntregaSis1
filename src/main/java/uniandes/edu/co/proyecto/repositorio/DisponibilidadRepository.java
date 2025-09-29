@@ -25,7 +25,7 @@ public interface DisponibilidadRepository extends JpaRepository<Disponibilidad, 
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Disponibilidad SET :TIPOSERVICIO, :PLACA, :HORAINICIO, :HORAFIN, :DIASEMANA WHERE IDDISPONIBILIDAD=:IDDISPONIBILIDAD", nativeQuery = true)
+    @Query(value = "UPDATE Disponibilidad SET TIPOSERVICIO=:TIPOSERVICIO, PLACA=:PLACA, HORAINICIO=:HORAINICIO, HORAFIN=:HORAFIN, DIASEMANA=:DIASEMANA WHERE IDDISPONIBILIDAD=:IDDISPONIBILIDAD", nativeQuery = true)
     void updateDisponibilidad(@Param("IDDISPONIBILIDAD") Long IDDISPONIBILIDAD, @Param("TIPOSERVICIO") String TIPOSERVICIO, @Param("PLACA") String PLACA, @Param("HORAINICIO") String HORAINICIO, @Param("HORAFIN") String HORAFIN, @Param("DIASEMANA") String DIASEMANA);
 
 
