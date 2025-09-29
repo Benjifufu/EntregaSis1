@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Servicio;
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
         
     @Query(value = "SELECT * FROM Servicio", nativeQuery = true)
-    Collection<Servicio> getServicio();
+    Collection<Servicio> getServicios();
 
     @Query(value = "SELECT * FROM Servicio WHERE IDSERVICIO = :IDSERVICIO", nativeQuery = true)
     Servicio getServicio(@Param("IDSERVICIO") Long IDSERVICIO);

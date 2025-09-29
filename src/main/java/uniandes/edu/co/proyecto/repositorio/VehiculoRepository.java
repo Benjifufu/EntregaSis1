@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Vehiculo;
 public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
     
     @Query(value = "SELECT * FROM Vehiculo", nativeQuery = true)
-    Collection<Vehiculo> getVehiculoes();
+    Collection<Vehiculo> getVehiculos();
 
     @Query(value = "SELECT * FROM Vehiculo WHERE PLACA = :PLACA", nativeQuery = true)
     Vehiculo getVehiculo(@Param("PLACA") Long PLACA);

@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.RutaServicio;
 public interface RutaServicioRepository extends JpaRepository<RutaServicio, Long> {
     
     @Query(value = "SELECT * FROM RutaServicio", nativeQuery = true)
-    Collection<RutaServicio> getRutaServicio();
+    Collection<RutaServicio> getRutasServicios();
 
     @Query(value = "SELECT * FROM RutaServicio WHERE IDRUTA = :IDRUTA", nativeQuery = true)
     RutaServicio getRutaServicio(@Param("IDRUTA") Long IDRUTA);

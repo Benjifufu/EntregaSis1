@@ -14,7 +14,7 @@ import uniandes.edu.co.proyecto.modelo.Relation11PK;
 public interface Relation11Repository extends JpaRepository<Relation11, Relation11PK> {
         
     @Query(value = "SELECT * FROM Relation11", nativeQuery = true)
-    Collection<Relation11> getRelation11();
+    Collection<Relation11> getRelations11();
 
     @Query(value = "SELECT * FROM Relation11 WHERE IDRUTA=:IDRUTA AND DIRECCION=:DIRECCION", nativeQuery = true)
     Relation11 getRelation11(@Param("IDRUTA") Long IDRUTA, @Param("DIRECCION") String DIRECCION);

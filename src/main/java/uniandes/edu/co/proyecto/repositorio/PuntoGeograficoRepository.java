@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.PuntoGeografico;
 public interface PuntoGeograficoRepository extends JpaRepository<PuntoGeografico, String> {
     
     @Query(value = "SELECT * FROM PuntoGeografico", nativeQuery = true)
-    Collection<PuntoGeografico> getPuntoGeografico();
+    Collection<PuntoGeografico> getPuntosGeograficos();
 
     @Query(value = "SELECT * FROM PuntoGeografico WHERE DIRECCION = :DIRECCION", nativeQuery = true)
     PuntoGeografico getPuntoGeografico(@Param("DIRECCION") Long DIRECCION);

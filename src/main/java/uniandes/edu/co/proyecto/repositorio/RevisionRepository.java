@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Revision;
 public interface RevisionRepository extends JpaRepository<Revision, Long> {
         
     @Query(value = "SELECT * FROM Revision", nativeQuery = true)
-    Collection<Revision> getRevision();
+    Collection<Revision> getRevisiones();
 
     @Query(value = "SELECT * FROM Revision WHERE IDREVISION = :IDREVISION", nativeQuery = true)
     Revision getRevision(@Param("IDREVISION") Long IDREVISION);

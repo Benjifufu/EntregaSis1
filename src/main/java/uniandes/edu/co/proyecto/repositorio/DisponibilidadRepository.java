@@ -13,7 +13,7 @@ import uniandes.edu.co.proyecto.modelo.Disponibilidad;
 public interface DisponibilidadRepository extends JpaRepository<Disponibilidad, Long> {
     
     @Query(value = "SELECT * FROM Disponibilidad", nativeQuery = true)
-    Collection<Disponibilidad> getDisponibilidad();
+    Collection<Disponibilidad> getDisponibilidades();
 
     @Query(value = "SELECT * FROM Disponibilidad WHERE IDDISPONIBILIDAD = :IDDISPONIBILIDAD", nativeQuery = true)
     Disponibilidad getDisponibilidad(@Param("IDDISPONIBILIDAD") Long IDDISPONIBILIDAD);
