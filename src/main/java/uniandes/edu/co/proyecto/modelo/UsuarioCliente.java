@@ -38,5 +38,77 @@ public class UsuarioCliente {
     @OneToMany(mappedBy = "usuarioCliente")
     private List<Servicio> servicios;
 
-    // Getters y setters
+    public UsuarioCliente(){;}
+
+    public UsuarioCliente(String nombre, String correo, String cedula, String celular) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.cedula = cedula;
+        this.celular = celular;
+
+    }
+
+    public Long getIdUsuarioCliente() {
+        return idUsuarioCliente;
+    }
+
+    public void setIdUsuarioCliente(Long idUsuarioCliente) {
+        this.idUsuarioCliente = idUsuarioCliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public List<Revision> getRevisiones() {
+        return revisiones;
+    }
+
+    public void setRevisiones(List<Revision> revisiones) {
+        this.revisiones = revisiones;
+    }
+
+    public List<TarjetaCredito> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCredito> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public List<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(List<Servicio> servicios) {
+        this.servicios = servicios;
+    }
 }

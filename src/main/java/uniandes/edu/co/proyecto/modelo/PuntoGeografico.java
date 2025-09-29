@@ -2,8 +2,6 @@ package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,7 +12,6 @@ import jakarta.persistence.Table;
 public class PuntoGeografico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String direccion;
 
     @Column(nullable = false)
@@ -27,5 +24,45 @@ public class PuntoGeografico {
     @JoinColumn(name = "idCiudad", nullable = false)
     private Ciudad ciudad;
 
-    // Getters y setters
+
+    public PuntoGeografico() {;}
+
+    public PuntoGeografico(String direccion, double coordenadaX, double coordenadaY, Ciudad ciudad) {
+        this.direccion = direccion;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.ciudad = ciudad;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public double getCoordenadaX() {
+        return coordenadaX;
+    }
+
+    public void setCoordenadaX(double coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public double getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    public void setCoordenadaY(double coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
+
+    public Ciudad getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
 }

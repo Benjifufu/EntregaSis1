@@ -33,5 +33,63 @@ public class Disponibilidad {
     @JoinColumn(name = "placa", nullable = false)
     private Vehiculo vehiculo;
 
-    // Getters y setters
+    public Disponibilidad() {;}
+
+    public Disponibilidad(String diaSemana, String horaInicio, String horaFin, String tipoServicio, Vehiculo vehiculo) {
+        this.diaSemana = diaSemana;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.tipoServicio = tipoServicio;
+        this.vehiculo = vehiculo;
+    }
+
+    public Long getIdDisponibilidad() {
+        return idDisponibilidad;
+    }
+
+    public void setIdDisponibilidad(Long idDisponibilidad) {
+        this.idDisponibilidad = idDisponibilidad;
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }   
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio) {
+        this.horaInicio = horaInicio;
+    }   
+
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public String getTipoServicio() {
+        return tipoServicio;
+    }
+
+    public void setTipoServicio(String tipoServicio) {
+        this.tipoServicio = tipoServicio;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+   
 }

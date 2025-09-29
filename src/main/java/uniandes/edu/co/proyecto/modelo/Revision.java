@@ -32,5 +32,62 @@ public class Revision {
     @JoinColumn(name = "idUsuarioConductor", nullable = false)
     private UsuarioConductor usuarioConductor;
 
-    // Getters y setters
+    public Revision() {;
+    }   
+
+    public Revision(int calificacion, String comentario, String revisionServicioUsuario, UsuarioCliente usuarioCliente, UsuarioConductor usuarioConductor) {
+        this.calificacion = calificacion;
+        this.comentario = comentario;
+        this.revisionServicioUsuario = revisionServicioUsuario;
+        this.usuarioCliente = usuarioCliente;
+        this.usuarioConductor = usuarioConductor;
+    }
+
+    public Long getIdRevision() {
+        return idRevision;
+    }
+
+    public void setIdRevision(Long idRevision) {
+        this.idRevision = idRevision;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getRevisionServicioUsuario() {
+        return revisionServicioUsuario;
+    }
+
+    public void setRevisionServicioUsuario(String revisionServicioUsuario) {
+        this.revisionServicioUsuario = revisionServicioUsuario;
+    }
+
+    public UsuarioCliente getUsuarioCliente() {
+        return usuarioCliente;
+    }   
+
+    public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
+        this.usuarioCliente = usuarioCliente;
+    }
+
+    public UsuarioConductor getUsuarioConductor() {
+        return usuarioConductor;
+    }
+    public void setUsuarioConductor(UsuarioConductor usuarioConductor) {
+        this.usuarioConductor = usuarioConductor;
+    }
+
 }
