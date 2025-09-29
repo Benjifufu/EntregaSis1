@@ -26,13 +26,13 @@ public interface Relation11Repository extends JpaRepository<Relation11, Relation
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Relation11 SET :IDRUTA, :DIRECCION WHERE ", nativeQuery = true)
-    void updateRelation11(@Param("COORDENADAX") Long COORDENADAX, @Param("Relation11PK") String Relation11PK, @Param("COORDENADAY") Long COORDENADAY, @Param("IDCIUDAD") Long IDCIUDAD);
+    @Query(value = "UPDATE Relation11 SET IDRUTA=:IDRUTA_nu, DIRECCION=:DIRECCION_nu WHERE IDRUTA=:IDRUTA AND DIRECCION=:DIRECCION", nativeQuery = true)
+    void updateRelation11(@Param("IDRUTA") Long IDRUTA, @Param("DIRECCION") String DIRECCION, @Param("IDRUTA_nu") Long IDRUTA_nu, @Param("DIRECCION_nu") String DIRECCION_nu);
 
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM Relation11 WHERE Relation11PK=:Relation11PK", nativeQuery = true)
-    void deleteRelation11(@Param("Relation11PK") String Relation11PK);
+    @Query(value = "DELETE FROM Relation11 WHERE IDRUTA=:IDRUTA AND DIRECCION=:DIRECCION", nativeQuery = true)
+    void deleteRelation11(@Param("IDRUTA") Long IDRUTA, @Param("DIRECCION") String DIRECCION);
     
 }

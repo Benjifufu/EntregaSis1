@@ -1,9 +1,62 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Collection;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.Servicio;
 
 public interface ServicioRepository extends JpaRepository<Servicio, Long> {
+        
+    @Query(value = "SELECT * FROM Servicio", nativeQuery = true)
+    Collection<Servicio> getServicio();
+
+    @Query(value = "SELECT * FROM Servicio WHERE IDSERVICIO = :IDSERVICIO", nativeQuery = true)
+    Servicio getServicio(@Param("IDSERVICIO") Long IDSERVICIO);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO Servicio (IDSERVICIO, TIPO, NIVEL, DISTANCIA, COSTOTOTAL, DURACION, NIVELTRANSPORTE, ORDENDOMICILIO, IDUSUARIOCLIENTE, IDUSUARIOCONDUCTOR, PLACA, FECHAINICIO, FECHAFINAL) VALUES (SERVICIO_SEQ.nextval, :TIPO, :NIVEL, :DISTANCIA, :COSTOTOTAL, :DURACION, :NIVELTRANSPORTE, :ORDENDOMICILIO, :IDUSUARIOCLIENTE, :IDUSUARIOCONDUCTOR, :PLACA, TO_TIMESTAMP(:FECHAINICIO, 'DD-MM-YYYY HH:MI:SS AM'), TO_TIMESTAMP(:FECHAFINAL, 'DD-MM-YYYY HH:MI:SS AM'))", nativeQuery = true)
+    void insertServicio(
+        @Param("TIPO") String TIPO, 
+        @Param("NIVEL") String NIVEL, 
+        @Param("DISTANCIA") Long DISTANCIA, 
+        @Param("COSTOTOTAL") Long COSTOTOTAL, 
+        @Param("DURACION") String DURACION, 
+        @Param("NIVELTRANSPORTE") String NIVELTRANSPORTE, 
+        @Param("ORDENDOMICILIO") String ORDENDOMICILIO, 
+        @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE, 
+        @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR, 
+        @Param("PLACA") String PLACA, 
+        @Param("FECHAINICIO") String FECHAINICIO,
+        @Param("FECHAFINAL") String FECHAFINAL
+    );
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Servicio SET TIPO=:TIPO, NIVEL=:NIVEL, DISTANCIA=:DISTANCIA, COSTOTOTAL=:COSTOTOTAL, DURACION=:DURACION, NIVELTRANSPORTE=:NIVELTRANSPORTE, ORDENDOMICILIO=:ORDENDOMICILIO, IDUSUARIOCLIENTE=:IDUSUARIOCLIENTE, IDUSUARIOCONDUCTOR=:IDUSUARIOCONDUCTOR, PLACA=:PLACA, FECHAINICIO=:FECHAINICIO, FECHAFINAL=:FECHAFINAL WHERE IDSERVICIO=:IDSERVICIO", nativeQuery = true)
+    void updateServicio(
+        @Param("TIPO") String TIPO, 
+        @Param("NIVEL") String NIVEL, 
+        @Param("DISTANCIA") Long DISTANCIA, 
+        @Param("COSTOTOTAL") Long COSTOTOTAL, 
+        @Param("DURACION") String DURACION, 
+        @Param("NIVELTRANSPORTE") String NIVELTRANSPORTE, 
+        @Param("ORDENDOMICILIO") String ORDENDOMICILIO, 
+        @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE, 
+        @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR, 
+        @Param("PLACA") String PLACA, 
+        @Param("FECHAINICIO") String FECHAINICIO,
+        @Param("FECHAFINAL") String FECHAFINAL
+        );
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Servicio WHERE IDSERVICIO=:IDSERVICIO", nativeQuery = true)
+    void deleteServicio(@Param("IDSERVICIO") String IDSERVICIO);
     
 }
