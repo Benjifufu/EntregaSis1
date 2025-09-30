@@ -33,4 +33,12 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
     @Query(value = "DELETE FROM Vehiculo WHERE PLACA = :PLACA", nativeQuery = true)
     void deleteVehiculo(@Param("PLACA") String PLACA);
 
+    @Query(value = "SELECT u.NOMBRE, v.PLACA, u.CEDULA, u.CELULAR, u.CORREO, SUM(s.COSTOTOTAL) as DINERO_OBTENIDO, COUNT(s.IDSERVICIO) as TOTAL_SERVICIOS\r\n" + //
+            "FROM VEHICULO v\r\n" + //
+            "INNER JOIN USUARIOCONDUCTOR u ON v.IDUSUARIOCONDUCTOR = u.IDUSUARIOCONDUCTOR\r\n" + //
+            "INNER JOIN SERVICIO s ON v.PLACA = s.PLACA\r\n" + //
+            "GROUP BY u.NOMBRE, v.PLACA, u.CEDULA, u.CELULAR, u.CORREO\r\n" + //
+            "ORDER BY u.NOMBRE", nativeQuery = true)
+    Collection<Vehiculo> getReportesPorVehiculo();
+
 }

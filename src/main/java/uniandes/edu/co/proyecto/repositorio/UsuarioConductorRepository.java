@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import uniandes.edu.co.proyecto.controllers.UsuariosClienteController;
 import uniandes.edu.co.proyecto.modelo.UsuarioConductor;
 
 public interface UsuarioConductorRepository extends JpaRepository<UsuarioConductor, Long> {
@@ -32,6 +33,14 @@ public interface UsuarioConductorRepository extends JpaRepository<UsuarioConduct
     @Transactional
     @Query(value = "DELETE FROM UsuarioConductor WHERE IDUSUARIOCONDUCTOR = :IDUSUARIOCONDUCTOR", nativeQuery = true)
     void deleteUsuarioConductor(@Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR);
+
+    @Query(value = "SELECT c.NOMBRE, c.IDUSUARIOCONDUCTOR, c.CORREO, c.CELULAR, c.CEDULA, COUNT(s.IDSERVICIO) as TOTAL_SERVICIOS\r\n" + //
+    "FROM USUARIOCONDUCTOR c\r\n" + //
+    "INNER JOIN SERVICIO s ON s.IDUSUARIOCONDUCTOR = c.IDUSUARIOCONDUCTOR\r\n" + //
+    "GROUP BY c.NOMBRE, c.IDUSUARIOCONDUCTOR, c.CORREO, c.CELULAR, c.CEDULA\r\n" + //
+    "ORDER BY TOTAL_SERVICIOS DESC\r\n" + //
+    "FETCH FIRST 20 ROWS ONLY", nativeQuery = true)
+    Collection<UsuarioConductor> getTopConductores();
 
 }
     
