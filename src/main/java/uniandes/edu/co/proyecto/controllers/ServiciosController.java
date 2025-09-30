@@ -31,4 +31,14 @@ public class ServiciosController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/servicios/new/save")
+    public ResponseEntity<String> servicioGuardar(@RequestBody Servicio servicio){
+        try {
+            servicioRepository.insertServicio(servicio.getTipo(), servicio.getNivel(), servicio.getDistancia(), servicio.getCostoTotal(), servicio.getDuracion(), servicio.getNivelTransporte(), servicio.getOrdenDomicilio(), servicio.getUsuarioCliente().getIdUsuarioCliente(), servicio.getUsuarioConductor().getIdUsuarioConductor(), servicio.getVehiculo().getPlaca(), servicio.getFechaInicio(), servicio.getFechaFinal());
+            return new ResponseEntity<>("Servicio creado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

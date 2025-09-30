@@ -32,4 +32,14 @@ public class Relation11Controller {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/relation11/new/save")
+    public ResponseEntity<String> relation11Guardar(@RequestBody Relation11 relation11){
+        try {
+            relation11Repository.insertRelation11(relation11.getPk().getIdRuta(), relation11.getPk().getDireccion());
+            return new ResponseEntity<>("relation11 creada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

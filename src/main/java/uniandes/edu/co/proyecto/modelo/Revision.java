@@ -18,7 +18,7 @@ public class Revision {
     private Long idRevision;
 
     @Column(nullable = false)
-    private int calificacion;
+    private long calificacion;
 
     @Column(nullable = false, length = 500)
     private String comentario;
@@ -37,7 +37,7 @@ public class Revision {
     public Revision() {;
     }   
 
-    public Revision(int calificacion, String comentario, String revisionServicioUsuario, UsuarioCliente usuarioCliente, UsuarioConductor usuarioConductor) {
+    public Revision(long calificacion, String comentario, String revisionServicioUsuario, UsuarioCliente usuarioCliente, UsuarioConductor usuarioConductor) {
         this.calificacion = calificacion;
         this.comentario = comentario;
         this.revisionServicioUsuario = revisionServicioUsuario;
@@ -53,11 +53,11 @@ public class Revision {
         this.idRevision = idRevision;
     }
 
-    public int getCalificacion() {
+    public long getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(long calificacion) {
         this.calificacion = calificacion;
     }
 

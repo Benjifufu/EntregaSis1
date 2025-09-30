@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.repositorio;
 
+import java.util.Date;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,17 +17,17 @@ public interface TarjetaCreditoRepository extends JpaRepository<TarjetaCredito, 
     Collection<TarjetaCredito> getTarjetasCredito();
 
     @Query(value = "SELECT * FROM TarjetaCredito WHERE NUMERO = :NUMERO", nativeQuery = true)
-    TarjetaCredito getTarjetaCredito(@Param("NUMERO") Long NUMERO);
+    TarjetaCredito getTarjetaCredito(@Param("NUMERO") int NUMERO);
 
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO TarjetaCredito (NUMERO, NOMBRETARJETA, FECHAVENCIMIENTO, CODIGOSEGURIDAD, IDUSUARIOCLIENTE) VALUES (:NUMERO, :NOMBRETARJETA, :FECHAVENCIMIENTO, :CODIGOSEGURIDAD, :IDUSUARIOCLIENTE)", nativeQuery = true)
-    void insertTarjetaCredito(@Param("NUMERO") Long NUMERO, @Param("NOMBRETARJETA") String NOMBRETARJETA, @Param("FECHAVENCIMIENTO") String FECHAVENCIMIENTO, @Param("CODIGOSEGURIDAD") Long CODIGOSEGURIDAD, @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE);
+    void insertTarjetaCredito(@Param("NUMERO") int NUMERO, @Param("NOMBRETARJETA") String NOMBRETARJETA, @Param("FECHAVENCIMIENTO") Date FECHAVENCIMIENTO, @Param("CODIGOSEGURIDAD") int CODIGOSEGURIDAD, @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE);
 
     @Modifying
     @Transactional
     @Query(value = "UPDATE TarjetaCredito SET NOMBRETARJETA=:NOMBRETARJETA, FECHAVENCIMIENTO=:FECHAVENCIMIENTO, CODIGOSEGURIDAD=:CODIGOSEGURIDAD, IDUSUARIOCLIENTE=:IDUSUARIOCLIENTE WHERE NUMERO=:NUMERO", nativeQuery = true)
-    void updateTarjetaCredito(@Param("NUMERO") Long NUMERO, @Param("NOMBRETARJETA") String NOMBRETARJETA, @Param("FECHAVENCIMIENTO") String FECHAVENCIMIENTO, @Param("CODIGOSEGURIDAD") Long CODIGOSEGURIDAD, @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE);
+    void updateTarjetaCredito(@Param("NUMERO") int NUMERO, @Param("NOMBRETARJETA") String NOMBRETARJETA, @Param("FECHAVENCIMIENTO") Date FECHAVENCIMIENTO, @Param("CODIGOSEGURIDAD") int CODIGOSEGURIDAD, @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE);
 
     @Modifying
     @Transactional

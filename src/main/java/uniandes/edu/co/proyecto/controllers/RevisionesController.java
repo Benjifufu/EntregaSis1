@@ -31,4 +31,14 @@ public class RevisionesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/revisiones/new/save")
+    public ResponseEntity<String> revisionGuardar(@RequestBody Revision revision){
+        try {
+            revisionRepository.insertRevision(revision.getCalificacion(), revision.getComentario(), revision.getRevisionServicioUsuario(), revision.getUsuarioCliente().getIdUsuarioCliente(), revision.getUsuarioConductor().getIdUsuarioConductor());
+            return new ResponseEntity<>("Revision creada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

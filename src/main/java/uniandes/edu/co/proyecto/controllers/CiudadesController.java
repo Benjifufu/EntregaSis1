@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import oracle.jdbc.proxy.annotation.Post;
 import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.repositorio.CiudadRepository;
 
@@ -27,6 +28,16 @@ public class CiudadesController {
         try {
             Collection<Ciudad> ciudades = ciudadRepository.getCiudades();
             return ResponseEntity.ok(ciudades);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/ciudades/new/save")
+    public ResponseEntity<String> ciudadGuardar(@RequestBody Ciudad ciudad){
+        try {
+            ciudadRepository.insertCiudad(ciudad.getDepartamento(), ciudad.getNombre());
+            return new ResponseEntity<>("Ciudad creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

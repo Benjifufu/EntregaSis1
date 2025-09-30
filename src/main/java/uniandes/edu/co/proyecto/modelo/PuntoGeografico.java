@@ -15,10 +15,10 @@ public class PuntoGeografico {
     private String direccion;
 
     @Column(nullable = false)
-    private double coordenadaX;
+    private Long coordenadaX;
 
     @Column(nullable = false)
-    private double coordenadaY;
+    private Long coordenadaY;
 
     @ManyToOne
     @JoinColumn(name = "idCiudad", nullable = false)
@@ -27,7 +27,7 @@ public class PuntoGeografico {
 
     public PuntoGeografico() {;}
 
-    public PuntoGeografico(String direccion, double coordenadaX, double coordenadaY, Ciudad ciudad) {
+    public PuntoGeografico(String direccion, Long coordenadaX, Long coordenadaY, Ciudad ciudad) {
         this.direccion = direccion;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
@@ -42,19 +42,19 @@ public class PuntoGeografico {
         this.direccion = direccion;
     }
 
-    public double getCoordenadaX() {
+    public Long getCoordenadaX() {
         return coordenadaX;
     }
 
-    public void setCoordenadaX(double coordenadaX) {
+    public void setCoordenadaX(Long coordenadaX) {
         this.coordenadaX = coordenadaX;
     }
 
-    public double getCoordenadaY() {
+    public Long getCoordenadaY() {
         return coordenadaY;
     }
 
-    public void setCoordenadaY(double coordenadaY) {
+    public void setCoordenadaY(Long coordenadaY) {
         this.coordenadaY = coordenadaY;
     }
 

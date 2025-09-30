@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.DisponibilidadRepository;
+import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Disponibilidad;
 
 @RestController
@@ -26,6 +27,16 @@ public class DisponibilidadesController {
         try {
             Collection<Disponibilidad> disponibilidades = disponibilidadRepository.getDisponibilidades();
             return ResponseEntity.ok(disponibilidades);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/disponibilidades/new/save")
+    public ResponseEntity<String> disponibilidadGuardar(@RequestBody Disponibilidad disponibilidad){
+        try {
+            disponibilidadRepository.insertDisponibilidad(disponibilidad.getTipoServicio(), disponibilidad.getVehiculo().getPlaca(), disponibilidad.getHoraInicio(), disponibilidad.getHoraFin(), disponibilidad.getDiaSemana());
+            return new ResponseEntity<>("Disponibilidad creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

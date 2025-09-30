@@ -32,4 +32,13 @@ public class PuntosGeograficosController {
         }
     }
 
+    @PostMapping("/puntosGeograficos/new/save")
+    public ResponseEntity<String> puntoGeograficoGuardar(@RequestBody PuntoGeografico puntoGeografico){
+        try {
+            puntosGeograficosRepository.insertPuntoGeografico(puntoGeografico.getCoordenadaX(), puntoGeografico.getDireccion(), puntoGeografico.getCoordenadaY(), puntoGeografico.getCiudad().getIdCiudad());
+            return new ResponseEntity<>("Punto Geografico creada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

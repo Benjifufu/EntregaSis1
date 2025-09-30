@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
+import oracle.net.aso.l;
 
 @Entity
 @Table(name = "relation_11")
@@ -21,7 +22,7 @@ public class Relation11 {
         ;
     }
 
-    public Relation11(Integer idRuta, String direccion){
+    public Relation11(Long idRuta, String direccion){
         this.pk = new Relation11PK(idRuta, direccion);
     }
 

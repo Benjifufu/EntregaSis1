@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.TarjetaCreditoRepository;
 import uniandes.edu.co.proyecto.modelo.Ciudad;
+import uniandes.edu.co.proyecto.modelo.RutaServicio;
 import uniandes.edu.co.proyecto.modelo.TarjetaCredito;
 
 @RestController
@@ -27,6 +28,16 @@ public class TarjetasCreditosController {
         try {
             Collection<TarjetaCredito> tarjetasCredito = tarjetaCreditoRepository.getTarjetasCredito();
             return ResponseEntity.ok(tarjetasCredito);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @PostMapping("/tarjetasCredito/new/save")
+    public ResponseEntity<String> tarjetaCreditoGuardar(@RequestBody TarjetaCredito tarjetaCredito){
+        try {
+            tarjetaCreditoRepository.insertTarjetaCredito(tarjetaCredito.getNumero(), tarjetaCredito.getNombreTarjeta(), tarjetaCredito.getFechaVencimiento(), tarjetaCredito.getCodigoSeguridad(), tarjetaCredito.getUsuarioCliente().getIdUsuarioCliente());
+            return new ResponseEntity<>("Tarjeta de credito creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

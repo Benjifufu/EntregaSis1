@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.UsuarioConductorRepository;
 import uniandes.edu.co.proyecto.modelo.Ciudad;
+import uniandes.edu.co.proyecto.modelo.UsuarioCliente;
 import uniandes.edu.co.proyecto.modelo.UsuarioConductor;
 
 @RestController
@@ -27,6 +28,16 @@ public class UsuariosConductorController {
         try {
             Collection<UsuarioConductor> usuarioConductor = usuarioConductorRepository.getUsuariosConductor();
             return ResponseEntity.ok(usuarioConductor);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/usuarioConductor/new/save")
+    public ResponseEntity<String> usuarioConductorGuardar(@RequestBody UsuarioConductor usuarioConductor){
+        try {
+            usuarioConductorRepository.insertUsuarioConductor(usuarioConductor.getNombre(), usuarioConductor.getCorreo(), usuarioConductor.getCedula(), usuarioConductor.getCelular());
+            return new ResponseEntity<>("usuario conductor creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

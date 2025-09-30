@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.repositorio;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,16 +25,16 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long> {
     void insertServicio(
         @Param("TIPO") String TIPO, 
         @Param("NIVEL") String NIVEL, 
-        @Param("DISTANCIA") Long DISTANCIA, 
-        @Param("COSTOTOTAL") Long COSTOTOTAL, 
+        @Param("DISTANCIA") double DISTANCIA, 
+        @Param("COSTOTOTAL") double COSTOTOTAL, 
         @Param("DURACION") String DURACION, 
         @Param("NIVELTRANSPORTE") String NIVELTRANSPORTE, 
         @Param("ORDENDOMICILIO") String ORDENDOMICILIO, 
         @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE, 
         @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR, 
         @Param("PLACA") String PLACA, 
-        @Param("FECHAINICIO") String FECHAINICIO,
-        @Param("FECHAFINAL") String FECHAFINAL
+        @Param("FECHAINICIO") Date FECHAINICIO,
+        @Param("FECHAFINAL") Date FECHAFINAL
     );
 
     @Modifying
@@ -42,16 +43,16 @@ public interface ServicioRepository extends JpaRepository<Servicio, Long> {
     void updateServicio(
         @Param("TIPO") String TIPO, 
         @Param("NIVEL") String NIVEL, 
-        @Param("DISTANCIA") Long DISTANCIA, 
-        @Param("COSTOTOTAL") Long COSTOTOTAL, 
+        @Param("DISTANCIA") double DISTANCIA, 
+        @Param("COSTOTOTAL") double COSTOTOTAL, 
         @Param("DURACION") String DURACION, 
         @Param("NIVELTRANSPORTE") String NIVELTRANSPORTE, 
         @Param("ORDENDOMICILIO") String ORDENDOMICILIO, 
         @Param("IDUSUARIOCLIENTE") Long IDUSUARIOCLIENTE, 
         @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR, 
         @Param("PLACA") String PLACA, 
-        @Param("FECHAINICIO") String FECHAINICIO,
-        @Param("FECHAFINAL") String FECHAFINAL
+        @Param("FECHAINICIO") Date FECHAINICIO,
+        @Param("FECHAFINAL") Date FECHAFINAL
         );
 
     @Modifying

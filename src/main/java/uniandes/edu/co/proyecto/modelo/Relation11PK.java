@@ -8,24 +8,24 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Relation11PK implements Serializable {
 
-    private Integer idRuta;  // Tipo básico, no relación
+    private Long idRuta;  // Tipo básico, no relación
     private String direccion; // Tipo básico, no relación
 
     public Relation11PK() {
         super();
     }
 
-    public Relation11PK(Integer idRuta, String direccion) {
+    public Relation11PK(Long idRuta, String direccion) {
         super();
         this.idRuta = idRuta;
         this.direccion = direccion;
     }
     
-    public Integer getIdRuta() {
+    public Long getIdRuta() {
         return idRuta;
     }
 
-    public void setIdRuta(Integer idRuta) {
+    public void setIdRuta(Long idRuta) {
         this.idRuta = idRuta;
     }
     

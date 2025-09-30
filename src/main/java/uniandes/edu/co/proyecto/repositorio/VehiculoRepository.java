@@ -21,7 +21,7 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Vehiculo (PLACA, TIPO, MARCA, MODELO, COLOR, CAPACIDAD, IDCIUDAD, IDUSUARIOCONDUCTOR) VALUES (:PLACA, :TIPO, :MARCA, :MODELO, :COLOR, :CAPACIDAD, :IDCIUDAD, :IDUSUARIOCONDUCTOR)", nativeQuery = true)
-    void insertVehiculo(@Param("PLACA") String PLACA, @Param("TIPO") String TIPO, @Param("MARCA") String MARCA, @Param("MODELO") String MODELO, @Param("COLOR") String COLOR, @Param("CAPACIDAD") Long CAPACIDAD, @Param("IDCIUDAD") Long IDCIUDAD, @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR);
+    void insertVehiculo(@Param("PLACA") String PLACA, @Param("TIPO") String TIPO, @Param("MARCA") String MARCA, @Param("MODELO") String MODELO, @Param("COLOR") String COLOR, @Param("CAPACIDAD") int CAPACIDAD, @Param("IDCIUDAD") Long IDCIUDAD, @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR);
     
     @Modifying
     @Transactional
