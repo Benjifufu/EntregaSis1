@@ -59,4 +59,17 @@ public class UsuariosConductorController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/usuariosConductor/masServicios")
+    public ResponseEntity<Collection<UsuarioConductor>> conductoresConMasServicios() {
+        try {
+            Collection<UsuarioConductor> conductores = usuarioConductorRepository.getTopConductores();
+            if (conductores.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.ok(conductores);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

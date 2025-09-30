@@ -1,7 +1,6 @@
 package uniandes.edu.co.proyecto.modelo;
 
 import jakarta.persistence.*;
-import oracle.net.aso.l;
 
 @Entity
 @Table(name = "relation_11")

@@ -1,6 +1,7 @@
 package uniandes.edu.co.proyecto.controllers;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.ServicioRepository;
@@ -59,4 +61,33 @@ public class ServiciosController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/servicios/cliente/{id}")
+    public ResponseEntity<Collection<Servicio>> serviciosPorCliente(@PathVariable("id") Long id) {
+        try {
+            Collection<Servicio> servicios = servicioRepository.getServiciosByCliente(id);
+            if (servicios.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.ok(servicios);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/servicios/reporte/bogota")
+    public ResponseEntity<Collection<Servicio>> reporteServiciosBogotaPorFecha(
+            @RequestParam("fechaInicio") Date fechaInicio,
+            @RequestParam("fechaFin") Date fechaFin) {
+        try {
+            Collection<Servicio> reporte = servicioRepository.getReporteServiciosBogotaPorFecha(fechaInicio, fechaFin);
+            if (reporte.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.ok(reporte);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

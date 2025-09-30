@@ -59,4 +59,18 @@ public class VehiculosController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @GetMapping("/vehiculos/reporte")
+    public ResponseEntity<Collection<Vehiculo>> obtenerReportePorVehiculo() {
+        try {
+            Collection<Vehiculo> reporte = vehiculoRepository.getReportesPorVehiculo();
+            if (reporte.isEmpty()) {
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(reporte);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }
