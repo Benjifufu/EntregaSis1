@@ -33,7 +33,7 @@ public class RutasServicios {
     @PostMapping("/rutasServicio/new/save")
     public ResponseEntity<String> rutaServicioGuardar(@RequestBody RutaServicio rutaServicio){
         try {
-            rutaServicioRepository.insertRutaServicio(rutaServicio.getIdRuta(), rutaServicio.getServicio().getIdServicio());
+            rutaServicioRepository.insertRutaServicio(rutaServicio.getServicio().getIdServicio());
             return new ResponseEntity<>("Ruta Servicio creada exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

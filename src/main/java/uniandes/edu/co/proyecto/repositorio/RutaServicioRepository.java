@@ -20,8 +20,8 @@ public interface RutaServicioRepository extends JpaRepository<RutaServicio, Long
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO RutaServicio (IDRUTA, IDSERVICIO) VALUES (RUTA_SERVICIO_SEQ.nextval, :IDSERVICIO)", nativeQuery = true)
-    void insertRutaServicio(@Param("IDRUTA") Long IDRUTA, @Param("IDSERVICIO") Long IDSERVICIO);
+    @Query(value = "INSERT INTO RutaServicio (IDRUTA, IDSERVICIO) VALUES (RUTA_SERVICIO_SEQ.nextval, :idServicio)", nativeQuery = true)
+    void insertRutaServicio(@Param("idServicio") Long idServicio);
 
     @Modifying
     @Transactional
