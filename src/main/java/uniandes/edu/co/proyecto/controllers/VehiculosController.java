@@ -36,7 +36,7 @@ public class VehiculosController {
     @PostMapping("/vehiculos/new/save")
     public ResponseEntity<String> vehiculoGuardar(@RequestBody Vehiculo vehiculo){
         try {
-            vehiculoRepository.insertVehiculo(vehiculo.getPlaca()), vehiculo.getTipo(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getColor(), vehiculo.getCapacidad(), vehiculo.getCiudad().getIdCiudad(), vehiculo.getUsuarioConductor().getIdUsuarioConductor());
+            vehiculoRepository.insertVehiculo(vehiculo.getPlaca(), vehiculo.getTipo(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getColor(), vehiculo.getCapacidad(), vehiculo.getCiudad().getIdCiudad(), vehiculo.getUsuarioConductor().getIdUsuarioConductor());
             return new ResponseEntity<>("usuario cliente creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
