@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import uniandes.edu.co.proyecto.controllers.UsuariosClienteController;
 import uniandes.edu.co.proyecto.modelo.UsuarioConductor;
 
 public interface UsuarioConductorRepository extends JpaRepository<UsuarioConductor, Long> {
