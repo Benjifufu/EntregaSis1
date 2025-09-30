@@ -31,6 +31,6 @@ public interface RevisionRepository extends JpaRepository<Revision, Long> {
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Revision WHERE IDREVISION=:IDREVISION", nativeQuery = true)
-    void deleteRevision(@Param("IDREVISION") String IDREVISION);
+    void deleteRevision(@Param("IDREVISION") Long IDREVISION);
     
 }

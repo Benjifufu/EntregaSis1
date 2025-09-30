@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.ServicioRepository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Servicio;
 
 @RestController
@@ -37,6 +35,26 @@ public class ServiciosController {
         try {
             servicioRepository.insertServicio(servicio.getTipo(), servicio.getNivel(), servicio.getDistancia(), servicio.getCostoTotal(), servicio.getDuracion(), servicio.getNivelTransporte(), servicio.getOrdenDomicilio(), servicio.getUsuarioCliente().getIdUsuarioCliente(), servicio.getUsuarioConductor().getIdUsuarioConductor(), servicio.getVehiculo().getPlaca(), servicio.getFechaInicio(), servicio.getFechaFinal());
             return new ResponseEntity<>("Servicio creado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/servicios/{id}/edit/save")
+    public ResponseEntity<String> servicioEditar(@PathVariable Long id, @RequestBody Servicio servicio){
+        try {
+            servicioRepository.updateServicio(servicio.getTipo(), servicio.getNivel(), servicio.getDistancia(), servicio.getCostoTotal(), servicio.getDuracion(), servicio.getNivelTransporte(), servicio.getOrdenDomicilio(), servicio.getUsuarioCliente().getIdUsuarioCliente(), servicio.getUsuarioConductor().getIdUsuarioConductor(), servicio.getVehiculo().getPlaca(), servicio.getFechaInicio(), servicio.getFechaFinal());
+            return new ResponseEntity<>("Servicio editado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/servicios/{id}/delete")
+    public ResponseEntity<String> servicioEliminar(@PathVariable("id") Long id) {
+        try {
+            servicioRepository.deleteServicio(id);
+            return new ResponseEntity<>("Servicio eliminado exitosamente", HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

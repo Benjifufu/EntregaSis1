@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.DisponibilidadRepository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Disponibilidad;
 
 @RestController
@@ -41,5 +39,26 @@ public class DisponibilidadesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/disponibilidades/{id}/edit/save")
+    public ResponseEntity<String> disponibilidadEditar(@PathVariable Long id, @RequestBody Disponibilidad disponibilidad){
+        try {
+            disponibilidadRepository.updateDisponibilidad(id, disponibilidad.getTipoServicio(), disponibilidad.getVehiculo().getPlaca(), disponibilidad.getHoraInicio(), disponibilidad.getHoraFin(), disponibilidad.getDiaSemana());
+            return new ResponseEntity<>("Disponibilidad editada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/disponibilidades/{id}/delete")
+    public ResponseEntity<String> disponibilidadEliminar(@PathVariable("id") Long id) {
+        try {
+            disponibilidadRepository.deleteDisponibilidad(id);
+            return new ResponseEntity<>("Disponibilidad eliminada exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
     
 }

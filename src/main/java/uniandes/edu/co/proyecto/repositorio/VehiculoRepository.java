@@ -26,11 +26,11 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE Vehiculo SET TIPO=:TIPO, MARCA=:MARCA, MODELO=:MODELO, COLOR=:COLOR, CAPACIDAD=:CAPACIDAD, IDCIUDAD=:IDCIUDAD, IDUSUARIOCONDUCTOR=:IDUSUARIOCONDUCTOR WHERE PLACA=:PLACA", nativeQuery = true)
-    void updateVehiculo(@Param("PLACA") Long PLACA, @Param("NOMBRE") String NOMBRE, @Param("CORREO") String CORREO, @Param("CEDULA") String CEDULA, @Param("CELULAR") String CELULAR);
+    void updateVehiculo(@Param("PLACA") String PLACA, @Param("TIPO") String TIPO, @Param("MARCA") String MARCA, @Param("MODELO") String MODELO, @Param("COLOR") String COLOR, @Param("CAPACIDAD") int CAPACIDAD, @Param("IDCIUDAD") Long IDCIUDAD, @Param("IDUSUARIOCONDUCTOR") Long IDUSUARIOCONDUCTOR);
     
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Vehiculo WHERE PLACA = :PLACA", nativeQuery = true)
-    void deleteVehiculo(@Param("PLACA") Long PLACA);
+    void deleteVehiculo(@Param("PLACA") String PLACA);
 
 }

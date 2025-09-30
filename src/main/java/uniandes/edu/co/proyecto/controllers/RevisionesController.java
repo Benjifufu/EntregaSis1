@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.RevisionRepository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Revision;
 
 @RestController
@@ -41,4 +39,26 @@ public class RevisionesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/revisiones/{id}/edit/save")
+    public ResponseEntity<String> revisionEditar(@PathVariable Long id, @RequestBody Revision revision){
+        try {
+            revisionRepository.updateRevision(id, revision.getCalificacion(), revision.getComentario(), revision.getRevisionServicioUsuario(), revision.getUsuarioCliente().getIdUsuarioCliente(), revision.getUsuarioConductor().getIdUsuarioConductor());
+            return new ResponseEntity<>("Revision editada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @GetMapping("/revisiones/{id}/delete")
+    public ResponseEntity<String> revisionEliminar(@PathVariable("id") Long id) {
+        try {
+            revisionRepository.deleteRevision(id);
+            return new ResponseEntity<>("Revision eliminada exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    
 }

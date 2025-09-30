@@ -31,6 +31,6 @@ public interface RutaServicioRepository extends JpaRepository<RutaServicio, Long
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM RutaServicio WHERE IDRUTA=:IDRUTA", nativeQuery = true)
-    void deleteRutaServicio(@Param("IDRUTA") String IDRUTA);
+    void deleteRutaServicio(@Param("IDRUTA") long IDRUTA);
 
 }

@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.Relation11Repository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.modelo.Relation11;
 
 
@@ -42,4 +39,5 @@ public class Relation11Controller {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
 }

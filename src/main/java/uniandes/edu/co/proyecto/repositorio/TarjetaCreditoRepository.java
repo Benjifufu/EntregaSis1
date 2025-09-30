@@ -32,6 +32,6 @@ public interface TarjetaCreditoRepository extends JpaRepository<TarjetaCredito, 
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM TarjetaCredito WHERE NUMERO = :NUMERO", nativeQuery = true)
-    void deleteTarjetaCredito(@Param("NUMERO") Long NUMERO);
+    void deleteTarjetaCredito(@Param("NUMERO") int NUMERO);
 
 }

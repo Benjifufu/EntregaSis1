@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.VehiculoRepository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
-import uniandes.edu.co.proyecto.modelo.UsuarioCliente;
 import uniandes.edu.co.proyecto.modelo.Vehiculo;
 
 @RestController
@@ -43,4 +40,23 @@ public class VehiculosController {
         }
     }
 
+    @PostMapping("/vehiculos/{id}/edit/save")
+    public ResponseEntity<String> vehiculoEditar(@PathVariable String id, @RequestBody Vehiculo vehiculo){
+        try {
+            vehiculoRepository.updateVehiculo(vehiculo.getPlaca(), vehiculo.getTipo(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getColor(), vehiculo.getCapacidad(), vehiculo.getCiudad().getIdCiudad(), vehiculo.getUsuarioConductor().getIdUsuarioConductor());
+            return new ResponseEntity<>("vehiculo editado exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/vehiculos/{id}/delete")
+    public ResponseEntity<String> vehiculoEliminar(@PathVariable("id") String id) {
+        try {
+            vehiculoRepository.deleteVehiculo(id);
+            return new ResponseEntity<>("vehiculo eliminado exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

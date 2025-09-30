@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import oracle.jdbc.proxy.annotation.Post;
 import uniandes.edu.co.proyecto.modelo.Ciudad;
 import uniandes.edu.co.proyecto.repositorio.CiudadRepository;
 
@@ -42,4 +40,26 @@ public class CiudadesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    @PostMapping("/ciudades/{id}/edit/save")
+    public ResponseEntity<String> ciudadEditar(@PathVariable Long id, @RequestBody Ciudad ciudad){
+        try {
+            ciudadRepository.updateCiudad(id, ciudad.getDepartamento(), ciudad.getNombre());
+            return new ResponseEntity<>("Ciudad editada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/ciudades/{id}/delete")
+    public ResponseEntity<String> ciudadEliminar(@PathVariable("id") Long id) {
+        try {
+            ciudadRepository.deleteCiudad(id);
+            return new ResponseEntity<>("Ciudad eliminada exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
+
+

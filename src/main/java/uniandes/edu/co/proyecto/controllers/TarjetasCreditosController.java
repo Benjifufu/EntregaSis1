@@ -9,12 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.repositorio.TarjetaCreditoRepository;
-import uniandes.edu.co.proyecto.modelo.Ciudad;
-import uniandes.edu.co.proyecto.modelo.RutaServicio;
 import uniandes.edu.co.proyecto.modelo.TarjetaCredito;
 
 @RestController
@@ -43,4 +40,23 @@ public class TarjetasCreditosController {
         }
     }
     
+    @PostMapping("/tarjetasCredito/{id}/edit/save")
+    public ResponseEntity<String> tarjetaCreditoEditar(@PathVariable int id, @RequestBody TarjetaCredito tarjetaCredito){
+        try {
+            tarjetaCreditoRepository.updateTarjetaCredito(id, tarjetaCredito.getNombreTarjeta(), tarjetaCredito.getFechaVencimiento(), tarjetaCredito.getCodigoSeguridad(), tarjetaCredito.getUsuarioCliente().getIdUsuarioCliente());
+            return new ResponseEntity<>("Tarjeta de credito editada exitosamente", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/tarjetasCredito/{id}/delete")
+    public ResponseEntity<String> tarjetaCreditoEliminar(@PathVariable("id") int id) {
+        try {
+            tarjetaCreditoRepository.deleteTarjetaCredito(id);
+            return new ResponseEntity<>("Tarjeta de credito eliminada exitosamente", HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
